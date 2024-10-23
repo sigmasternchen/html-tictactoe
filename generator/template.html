@@ -2,15 +2,15 @@
 <html>{{- "" -}}
 <head>{{- "" -}}
     <title>HTML-only Tic-Tac-Toe</title>{{- "" -}}
-</head>
-{{- "" -}}
+</head>{{- "" -}}
 <body>{{- "" -}}
+
 <h1>HTML-only Tic-Tac-Toe</h1>{{- "" -}}
 <h2>Yes, really.</h2>{{- "" -}}
 
 {%- set winner = board.winner() -%}
 
-<a href={{ reset }}>Start over</a>
+<a href={{ reset }}>Start over</a>{{- "" -}}
 <table border=1 cellpadding=10>
     {%- for y in range(3) -%}
     <tr>
@@ -18,11 +18,11 @@
         <td>
             {%- set cell = board.field[y][x] -%}
             {%- if cell != 0 -%}
-            {{- 'X' if cell == 1 else 'O' -}}
+                {{- 'X' if cell == 1 else 'O' -}}
             {%- elif winner != -1 -%}
-            &nbsp;
+                &nbsp;
             {%- else -%}
-            <a href={{ prefix }}{{ x }}{{ y }}.html>?</a>
+                <a href={{ prefix }}{{ x }}{{ y }}.html>?</a>
             {%- endif -%}
         </td>
         {%- endfor -%}
@@ -32,21 +32,16 @@
 {{- "" -}}
 
 {%- if winner != -1 -%}
-{%- if winner == 0 -%}
-<h3>Draw</h3>
-{%- elif winner == 1 -%}
-<h3>You won! (How??)</h3>
-{%- elif winner == 2 -%}
-<h3>You lost!</h3>
-<h4>... At Tic-Tac-Toe...</h4>
-<h5>... Against HTML...</h5>
+    {%- if winner == 0 -%}
+        <h3>Draw</h3>
+    {%- elif winner == 1 -%}
+        <h3>You won! (How??)</h3>
+    {%- elif winner == 2 -%}
+        <h3>You lost!</h3>
+        <h4>... At Tic-Tac-Toe...</h4>
+        <h5>... Against HTML...</h5>
+    {%- endif -%}
+    <a href={{ reset }}>Try again!</a>
 {%- endif -%}
-
-<a href={{ reset }}>Try again!</a>
-{%- endif -%}
-
-</body>
-{{- "" -}}
-
-
-</html>{{- "" -}}
+</body>{{- "" -}}
+</html>
