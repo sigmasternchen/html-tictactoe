@@ -11,6 +11,7 @@
 {%- set winner = board.winner() -%}
 
 <a href={{ reset }}>Start over</a>{{- "" -}}
+<br /><br />{{- "" -}}
 <table border=1 cellpadding=10>
     {%- for y in range(3) -%}
     <tr>
@@ -43,5 +44,8 @@
     {%- endif -%}
     <a href={{ reset }}>Try again!</a>
 {%- endif -%}
+
+<hr />{{- "" -}}
+<a href="https://github.com/sigmasternchen/html-tictactoe">Source Code</a>{{- "" -}}
 </body>{{- "" -}}
 </html>

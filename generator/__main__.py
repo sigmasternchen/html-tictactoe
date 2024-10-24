@@ -36,4 +36,4 @@ def generate_options(initial_prefix, prefix, board):
 if __name__ == "__main__":
     board = Board()
 
-    generate_options("g", "g", board)
+    generate_options("index", "index", board)
