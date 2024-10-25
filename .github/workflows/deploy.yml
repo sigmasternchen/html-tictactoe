@@ -1,0 +1,33 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.12
+      - name: Set up Poetry
+        run: python -m pip install poetry
+      - name: Install dependencies
+        run: poetry install
+      - name: Build project
+        run: poetry run python -m generator
+      - name: Deploy to BunnyCDN
+        uses: ayeressian/bunnycdn-storage-deploy@v2.2.3
+        with:
+          source: "./output"
+          destination: "/"
+          upload: "true"
+          remove: "true"
+          storageZoneName: ${{ secrets.BUNNYCDN_STORAGE_ZONE }}
+          storagePassword: ${{ secrets.BUNNYCDN_STORAGE_KEY }}
