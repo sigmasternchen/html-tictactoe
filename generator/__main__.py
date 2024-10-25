@@ -12,12 +12,12 @@ env = Environment(
 template = env.get_template("template.html")
 
 taunts = [
-    "Looks like you’re just one step away from defeat! Better luck next time!",
-    "You might want to start practicing your ‘congratulations’ speech for me!",
-    "I hope you’re ready to accept your fate—because it’s coming fast!",
-    "You can almost hear the victory music playing for me, can’t you?",
-    "You’re about to witness a masterclass in losing—starring you!",
-    "You’re on the express train to defeat, and I’m the conductor!"
+    "Looks like you're just one step away from defeat! Better luck next time!",
+    "You might want to start practicing your 'congratulations' speech for me!",
+    "I hope you're ready to accept your fate - because it's coming fast!",
+    "You can almost hear the victory music playing for me, can't you?",
+    "You're about to witness a masterclass in losing - starring you!",
+    "You're on the express train to defeat, and I'm the conductor!"
 ]
 
 random.seed(1337)
