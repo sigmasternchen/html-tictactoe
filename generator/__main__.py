@@ -1,6 +1,6 @@
 from jinja2 import Environment, select_autoescape, FileSystemLoader
 
-from generator.model import Board, NOT_DETERMINED, WIN
+from generator.model import Board, NOT_DETERMINED, WIN, Move
 from generator.tictactoe import calculate_best_move
 
 import random
@@ -29,37 +29,38 @@ def get_taunt(board, outcome):
         return ""
 
 
-def render_board(initial_prefix, prefix, board, outcome):
-    with open("output/" + prefix + ".html", "w") as file:
+def render_board(prefix, old_board, board, outcome):
+    with open("output/" + prefix + old_board.getId() + ".html", "w") as file:
         file.write(
 	    template.render(
                 board=board, 
                 prefix=prefix,
-                reset=initial_prefix + ".html",
-                msg=get_taunt(board, outcome)
+                reset=prefix + ".html",
+                msg=get_taunt(board, outcome),
+                Move=Move,
              )
         )
 
 
-def generate_options(initial_prefix, prefix, board, outcome):
-    render_board(initial_prefix, prefix, board, outcome)
+def generate_options(prefix, old_board, board, outcome):
+    render_board(prefix, old_board, board, outcome)
 
     if board.winner() == NOT_DETERMINED:
         for move in board.moves():
             future = board.apply(move)
             response, outcome = calculate_best_move(future)
 
-            print(prefix, move, response)
+            print(board.getId(), move, response)
 
             generate_options(
-                initial_prefix,
-                prefix + str(move),
+                prefix,
+                future,
                 future.apply(response) if response else future,
-		outcome
+		        outcome
             )
 
 
 if __name__ == "__main__":
     board = Board()
 
-    generate_options("index", "index", board, NOT_DETERMINED)
+    generate_options("index", board, board, NOT_DETERMINED)

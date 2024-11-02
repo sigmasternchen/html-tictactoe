@@ -25,7 +25,7 @@
             {%- elif winner != -1 -%}
                 &nbsp;
             {%- else -%}
-                <a href={{ prefix }}{{ x }}{{ y }}.html>?</a>
+                <a href={{ prefix }}{{ board.apply(Move(x, y)).getId() }}.html>?</a>
             {%- endif -%}
         </td>
         {%- endfor -%}

@@ -97,6 +97,18 @@ class Board:
 
         return DRAW
 
+
+    def getId(self):
+        id = 0
+        for y in range(3):
+            for x in range(3):
+                id += self.field[y][x] * int(pow(3, (y * 3 + x)))
+        if id == 0:
+            return ""
+        else:
+            return hex(id)[2:]
+
+
     def visualize(self):
         for y in range(3):
             for x in range(3):
