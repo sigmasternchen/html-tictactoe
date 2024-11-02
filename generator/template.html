@@ -10,11 +10,11 @@
 
 {%- set winner = board.winner() -%}
 
-<h3>{{ msg }}</h3>
+<h3>{{ msg }}</h3>{{- "" -}}
 
 <a href={{ reset }}>Start over</a>{{- "" -}}
 <br /><br />{{- "" -}}
-<table border=1 cellpadding=10>
+<table border=1 cellpadding=10>{{- "" -}}
     {%- for y in range(3) -%}
     <tr>
         {%- for x in range(3) -%}
