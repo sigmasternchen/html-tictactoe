@@ -30,7 +30,7 @@ def get_taunt(board, outcome):
 
 
 def render_board(prefix, old_board, board, outcome):
-    with open("output/" + prefix + old_board.getId() + ".html", "w") as file:
+    with open("output/" + prefix + old_board.get_id() + ".html", "w") as file:
         file.write(
 	    template.render(
                 board=board, 
@@ -50,7 +50,7 @@ def generate_options(prefix, old_board, board, outcome):
             future = board.apply(move)
             response, outcome = calculate_best_move(future)
 
-            print(board.getId(), move, response)
+            print(board.get_id(), move, response)
 
             generate_options(
                 prefix,

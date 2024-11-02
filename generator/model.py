@@ -98,7 +98,7 @@ class Board:
         return DRAW
 
 
-    def getId(self):
+    def get_id(self):
         id = 0
         for y in range(3):
             for x in range(3):
